@@ -5,6 +5,7 @@ author: anthony
 categories: [Walkthroughs, HackTheBox]
 tags: [hackthebox, enumeration, privilege-escalation]     # TAG names should always be lowercase
 description: This post provides a walkthrough of the HackTheBox machine MonitorsTwo, including enumeration, exploiting CVE-2022-46169 for RCE, and gaining root.
+image: assets/posts/monitors-two/b55987f8ef9a42df2ad4b4c096e3824d.webp
 ---
 
 ## Enumeration with nmap
