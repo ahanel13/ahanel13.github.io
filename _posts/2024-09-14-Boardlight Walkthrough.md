@@ -4,7 +4,7 @@ date: 2024-09-14 11:00:00 -0600
 author: anthony   
 categories: [Walkthroughs, HackTheBox]
 tags: [hackthebox, enumeration, privilege-escalation]    # TAG names should always be lowercase
-description: 
+description: In this HackTheBox walkthrough of the *Boardlight* machine, we explore enumeration techniques, vulnerability exploitation, and privilege escalation to gain root access. By identifying key VHosts, leveraging known CVEs, and using tools like *Linpeas*, we successfully escalate privileges and complete the challenge.
 media_subpath: /assets/posts/boardlight-walkthrough
 image:
   path: pwned banner.png
