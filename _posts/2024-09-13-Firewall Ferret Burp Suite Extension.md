@@ -1,6 +1,7 @@
 --- 
 title: I Created a Firewall Ferret
 date: 2024-09-13 11:00:00 -0600
+last_modified_at: 2024-11-27 11:00:00 -0600
 author: anthony   
 categories: [Projects, Burp Suite Extensions]
 tags: [dev work, burp suite, open-source]     # TAG names should always be lowercase
