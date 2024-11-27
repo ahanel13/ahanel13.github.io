@@ -1,6 +1,6 @@
 --- 
 title: I Encapsulated the Largest Single File Python Burp Extension
-date: 2024-09-14 11:00:00 -0600
+date: 2024-11-27 11:00:00 -0600
 author: anthony   
 categories: [Development, Burp Suite Extensions]
 tags: [dev work, open-source]    # TAG names should always be lowercase
