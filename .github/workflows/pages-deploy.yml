@@ -9,6 +9,15 @@ on:
       - README.md
       - LICENSE
 
+  pull_request:
+    branches:
+      - main
+      - master
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
