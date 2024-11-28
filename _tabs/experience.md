@@ -3,7 +3,11 @@
 icon: fas fa-info-circle
 order: 5
 ---
-[Download Resume](/assets/files/AnthonyHanel_Resume.pdf)
+
+<div style="display: flex; justify-content: space-between;">
+  <a href="/assets/files/AnthonyHanel_Resume.pdf">Download Resume</a>
+  <i>Last Updated: {{ page.last_modified_at | date: '%b %d, %Y'}}</i>
+</div>
 
 ## Offensive Application Security Analyst
 _**Citibank** | July 2022 - Present_
