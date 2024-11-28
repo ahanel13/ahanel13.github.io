@@ -101,10 +101,11 @@
       width: inherit;
       text-align: center;
       font-size: smaller;
-      --text-color: rgb(103 103 103);
+      color: var(--sidebar-muted-color);
+      font-weight: 600;
     "
   >
-    Updated on: {{ page.last_modified_at | date: '%b %d, %Y' }}
+    Updated on: {{ site.time | date: '%b %d, %Y' }}
   </p>
 </aside>
 <!-- #sidebar -->
