@@ -5,10 +5,16 @@ order: 4
 media_subpath: /assets/img/about/
 ---
 
-<div style="text-align: right;">
-  <h1>Hi, I’m Anthony.</h1>
-  <em>Application Security Analyst / Ethical Hacker & Software Engineer</em>
+<div style="display: flex; justify-content: space-between;">
+  <div style="align-self: flex-end;">
+    <i>Last Updated: {{ page.last_modified_at | date: '%b %d, %Y'}}</i>
+  </div>
+  <div style="text-align: right;">
+    <h1>Hi, I’m Anthony.</h1>
+    <em>Application Security Analyst / Ethical Hacker & Software Engineer</em>
+  </div>
 </div>
+
 ![](IMG_1604-1-1-scaled.png){: .w-60 .center}
 
 # My Journey in Cybersecurity
