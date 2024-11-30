@@ -75,15 +75,15 @@ We'll be using IntelliJ's ability to execute other tools. To do this:
 5. Make sure the `Open console for tool output` checkbox is checked.
 6. Click "Ok" 
 
-![Image of IntelliJ tool configuration](IntelliJToolConfig.png)
+![Image of IntelliJ tool configuration](intellijToolConfig.png)
 
 ## 5. Run the Burp Suite External Tool
 To run external tools use the `Tools` menu item in the top left.
 
 1. Run the tool `Tools -> External Tools -> BurpSuite`
-  ![Running external tools with IntelliJ](IntelliJExternalTools.png)
+  ![Running external tools with IntelliJ](intellijExternalTools.png)
 1. Attach the debugger within the terminal that pops up. (_**Hint**: it's a button_)
-  ![Attach debugger button within run terminal](IntelliJAttachDebuggerBtn.png)
+  ![Attach debugger button within run terminal](intellijAttachDebuggerBtn.png)
 1. Confirm the debugger is attached by looking in the debug windows
   ![Debug windows with target socket](debugWindow.png)
 
@@ -96,7 +96,7 @@ To run external tools use the `Tools` menu item in the top left.
   ![Add Burp Suite extension menu](addBurpExtensionMenu.png){:weight="50%"}
 
 3. **Verify that the breakpoint was hit!**
-  ![Windows within IntelliJ showing debugger context](IntelliJDebugingContext.png)
+  ![Windows within IntelliJ showing debugger context](intellijDebugingContext.png)
 
 ## 7. Adding More Convenience
 > While this configuration is not required, it turns a 4-click action into a 2-3-click action depending on when you last ran the debugger. 
