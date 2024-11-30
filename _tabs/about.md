@@ -21,13 +21,13 @@ media_subpath: /assets/img/about/
 
 ----
 
-I began studying cyber security in March 2020, while completing my **B.S. in Computer Science from the University of North Texas**. After graduating, I started my first tech job as a Java Software engineer at Citi. After a year, I moved to an internal pentester team.
+I embarked on my cybersecurity journey in March 2020 while pursuing a B.S. in Computer Science at the University of North Texas. The pandemic gave me a lot of free to time explore some of my interests. After graduating, I landed my first tech role as a Java Software Engineer at Citi, where I spent a year before transitioning to an internal penetration testing team. (I've come to realize this development role has help me in cybersecurity more than I would have realize. It's good to know how applications work through-in-through.)
 
-Since then, I’ve worked as an Application Penetration tester at Citibank for close to two years, becoming the top pentester in NAM based on the number of and the severity of issues found.  
+Over the next two years, I honed my skills as an Application Penetration Tester at Citibank. During this time, I achieved recognition as the top pentester in the North America region for both years, based on number of high severity issues I uncovered.
 
-I have acquired the [Burp Suite Certified Practioner](https://portswigger.net/web-security/e/c/403e04ff75c79d49) and [CompTIA Security+](https://www.credly.com/badges/de5e7090-bd2f-4e86-9a89-b793d9234ed9?source=linked_in_profile) certifications and remaine active and HackTheBox.  
+I also earned certifications like the Burp Suite Certified Practitioner and CompTIA Security+ while staying active on platforms like HackTheBox to continually refine my skills. (I'm studying for the CPTS and OSCP next be a little more well rounded of a tester.)
 
-I find a lot of satisfaction in finding hidden vulnerabilities and helping others become the best ethical hackers they can be. 
+I've found somewhat of a passion in discovering hidden vulnerabilities and helping others become exceptional ethical hackers.
 
 <div style="text-align: right;">
   <h1>About Me</h1>
@@ -37,8 +37,8 @@ I find a lot of satisfaction in finding hidden vulnerabilities and helping other
 
 ![](IMG_2124.JPG){: width="350" height=400" .w-40 .right}
 
-I am passionate about secure applications, good coffee, and the outdoors.
+Beyond my technical pursuits, an excellent coffee maker, a mediocure woodworker, fly fisherman and a general outdoorsman.
 
-As an avid outdoorsman, I enjoy rock climbing, backpacking, camping, mountain biking, and exploring the beauty of our national parks. When I’m not studying for my next certification, you can find me on the trail or planning my next trip!
+I enjoy rock climbing, backpacking, camping, mountain biking, and exploring the beauty of national parks I have found my self near. When I’m not studying for my next certification, you can often find me tying my own flies or planning my next adventure!
 
-I was a long-time Texas resident but recently moved to Utah for the outdoor opprotunites, and I currently live with future wife and our 2 cats, April and Tripp. 
+I relocated from Texas to Utah in 2023 to embrace the abundant outdoor opportunities. I work remote and live with my fiancée and our two beloved cats, April and Tripp.
