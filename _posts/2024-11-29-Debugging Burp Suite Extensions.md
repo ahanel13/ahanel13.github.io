@@ -5,6 +5,9 @@ author: anthony
 categories: [Development, Burp Suite Extensions]
 tags: [dev work, open-source, how-to]    # TAG names should always be lowercase
 media_subpath: /assets/posts/debugging-burp-suite-extensions
+image:
+  path: attachDebugger_dark.png
+  alt: Attach Debugger Icon
 description: This article guides you through configuring IntelliJ to seamlessly start a debugging session with Burp Suite at the click of a button. Streamline your workflow and enhance your ability to test code faster and more efficiently.
 ---
 
