@@ -1,6 +1,6 @@
 --- 
 title: How to debug Burp Suite Extensions with Intellij
-date: 2024-11-29 20:00:00 -0700 # 8:00 PM
+date: 2024-11-29 19:00:00 -0700 # 7:00 PM
 author: anthony   
 categories: [Development, Burp Suite Extensions]
 tags: [dev work, open-source, how-to]    # TAG names should always be lowercase
