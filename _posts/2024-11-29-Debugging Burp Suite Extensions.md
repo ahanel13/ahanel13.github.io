@@ -11,7 +11,7 @@ image:
 description: This article guides you through configuring IntelliJ to start a debugging session with Burp Suite seamlessly at the click of a button. Streamline your workflow and enhance your ability to test Burp Suite extensions faster and more efficiently.
 ---
 
-Burp Suite extension development is a rewarding challenge, but it can be time-consuming without the right tools. It requires a fair amount of experience with Java, it's difficult to write tests without having to mock all Montoya objects, and debugging the code while running Burp Suite can be tedious. After this how-to, hopefully, you have one less thing to think about.
+Burp Suite extension development is a rewarding challenge, but it can be time-consuming without the right tools. It requires a fair amount of experience with Java, it's difficult to write tests without having to mock all Montoya objects, and debugging the code while running Burp Suite can be tedious. After this how-to, you'll have one less thing to think about.
 
 ##  Requirements
 The following are the requirements for developing and debugging Burp Suite extensions with Intellij. *While familiarity with either the [Montoya Api](https://portswigger.github.io/burp-extensions-montoya-api/javadoc/burp/api/montoya/MontoyaApi.html) or [Wiener Api](https://github.com/PortSwigger/burp-extender-api) is recommended, it's not required for this how-to.*
@@ -72,18 +72,18 @@ We'll be using IntelliJ's ability to execute other tools. To do this:
 4. Fill out the following
    - `Programs`: this will be the path to your Java executable, i.e. java.exe 
    - `Arguments`: this will be the *JDWP* agent from the previous section prepended with the full path to your Burp Suite Java executable. (`burpsuite.jar`)
-5. Make sure `Open console for tool output` is checked.
+5. Make sure the `Open console for tool output` checkbox is checked.
 6. Click "Ok" 
 
-![Image of IntelliJ tool configuration](IntelliJToolConfig.png)
+![Image of IntelliJ tool configuration](intellijToolConfig.png)
 
 ## 5. Run the Burp Suite External Tool
 To run external tools use the `Tools` menu item in the top left.
 
 1. Run the tool `Tools -> External Tools -> BurpSuite`
-  ![Running external tools with IntelliJ](IntelliJExternalTools.png)
+  ![Running external tools with IntelliJ](intellijExternalTools.png)
 1. Attach the debugger within the terminal that pops up. (_**Hint**: it's a button_)
-  ![Attach debugger button within run terminal](IntelliJAttachDebuggerBtn.png)
+  ![Attach debugger button within run terminal](intellijAttachDebuggerBtn.png)
 1. Confirm the debugger is attached by looking in the debug windows
   ![Debug windows with target socket](debugWindow.png)
 
@@ -96,7 +96,7 @@ To run external tools use the `Tools` menu item in the top left.
   ![Add Burp Suite extension menu](addBurpExtensionMenu.png){:weight="50%"}
 
 3. **Verify that the breakpoint was hit!**
-  ![Windows within IntelliJ showing debugger context](IntelliJDebugingContext.png)
+  ![Windows within IntelliJ showing debugger context](intellijDebugingContext.png)
 
 ## 7. Adding More Convenience
 > While this configuration is not required, it turns a 4-click action into a 2-3-click action depending on when you last ran the debugger. 
