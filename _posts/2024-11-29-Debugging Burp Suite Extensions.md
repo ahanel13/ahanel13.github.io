@@ -9,9 +9,14 @@ image:
   path: attachDebugger_dark.png
   alt: Attach Debugger Icon
 description: This article guides you through configuring IntelliJ to start a debugging session with Burp Suite seamlessly at the click of a button. Streamline your workflow and enhance your ability to test Burp Suite extensions faster and more efficiently.
+show_feature_image: false
 ---
 
 <style>
+  .preview-img, figcaption {
+    display: none;
+  }
+
   .video-container {
     position: relative;
     width: 100%;
