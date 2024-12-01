@@ -9,7 +9,41 @@ image:
   path: attachDebugger_dark.png
   alt: Attach Debugger Icon
 description: This article guides you through configuring IntelliJ to start a debugging session with Burp Suite seamlessly at the click of a button. Streamline your workflow and enhance your ability to test Burp Suite extensions faster and more efficiently.
+show_feature_image: false
 ---
+
+<style>
+  .preview-img, figcaption {
+    display: none;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<div class="video-container">
+  <iframe 
+    src="https://www.youtube.com/embed/pz_SwOx9twI" 
+    title="How-To Debug Burp Suite Extensions with IntelliJ" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+
 
 Burp Suite extension development is a rewarding challenge, but it can be time-consuming without the right tools. It requires a fair amount of experience with Java, it's difficult to write tests without having to mock all Montoya objects, and debugging the code while running Burp Suite can be tedious. After this how-to, you'll have one less thing to think about.
 
@@ -21,7 +55,7 @@ The following are the requirements for developing and debugging Burp Suite exten
 - Burp Suite [Community](https://portswigger.net/burp/communitydownload)/[Professional](https://portswigger.net/burp/pro) (*ScanChecks are not allowed within Community Edition*)
 - A Burp Suite extensions project written in Java; it does not matter if Montoya Api or Wiener Api are used.
 
-> For this how-to, I'll be using my personal [Boiler Plate project](https://github.com/ahanel13/Burp-Extension-Boilerplate) which was created to help testers start writing extensions without requiring all the setup.
+> For this how-to, I'll be using my personal [Burp Extension Boiler Plate project](https://github.com/ahanel13/Burp-Extension-Boilerplate) which was created to help testers start writing extensions without requiring all the setup.
 {: .prompt-warning}
 
 ## 1. Setting Up Your Project in IntelliJ
@@ -74,6 +108,12 @@ We'll be using IntelliJ's ability to execute other tools. To do this:
    - `Arguments`: this will be the *JDWP* agent from the previous section prepended with the full path to your Burp Suite Java executable. (`burpsuite.jar`)
 5. Make sure the `Open console for tool output` checkbox is checked.
 6. Click "Ok" 
+
+> Windows users will find their Burp install here most likely.
+> ```
+> %USERPROFILE%\AppData\Local\Programs\BurpSuiteCommunity
+> ```
+{: .prompt-tip}
 
 ![Image of IntelliJ tool configuration](intellijToolConfig.png)
 
@@ -132,4 +172,4 @@ To test any new code changes, you'll have to rebuild the jar and reinstall/re-en
 - **Jar File Not Found**: Ensure you’ve built the jar file correctly and that the file path is accurate. Refresh Maven/Gradle dependencies if needed.
 
 ## Conclusion
-Debugging Burp Suite extensions with IntelliJ doesn’t have to be difficult. By following this guide, you’ve streamlined your workflow and gained the tools to test your extensions efficiently. Whether you’re a seasoned developer or new to extension development, these steps should help you work smarter, not harder. If you have questions or feedback, feel free to reach out or explore the [Boiler Plate project](https://github.com/ahanel13/Burp-Extension-Boilerplate) for more resources.
+Debugging Burp Suite extensions with IntelliJ doesn’t have to be difficult. By following this guide, you’ve streamlined your workflow and gained the tools to test your extensions efficiently. Whether you’re a seasoned developer or new to extension development, these steps should help you work smarter, not harder. If you have questions or feedback, feel free to reach out or explore the [Burp Extension Boiler Plate project](https://github.com/ahanel13/Burp-Extension-Boilerplate) for more resources.
