@@ -12,11 +12,11 @@ description: A guide to understanding and differentiating between CL.0 and 0.CL 
  with a practical analysis of testing methodologies.
 ---
 
-I recently reviewed a reported issue regarding 0.CL. While reviewing issues isn’t part of my daily responsibilities, it’s something I encounter occasionally. The process can be challenging—understanding the testing methods, validating their legitimacy, and determining whether the findings pose a real security risk requires both knowledge and precision.
+I recently reviewed a reported issue regarding 0.CL. While reviewing issues isn't part of my daily responsibilities, it's something I encounter occasionally. The process can be challenging—understanding the testing methods, validating their legitimacy, and determining whether the findings pose a real security risk requires both knowledge and precision.
 
 In this particular case, the report claimed a **0.CL Request Smuggling** issue had been identified. However, inconsistencies in the report stood out immediately. Part of the confusion was my own: I initially thought the issue was **CL.0 Request Smuggling**, a vulnerability I was very familiar with. However, once I realized my mistake, I came to the realization that I was only vaguely familiar with **0.CL Request Smuggling**.
 
-After some research and conversations with others in the community, I want to clarify my understanding—and potentially help others—I’ll break down the differences between Request Smuggling types and the specific discrepancies between **CL.0 vs. 0.CL**.
+After some research and conversations with others in the community, I want to clarify my understanding—and potentially help others—I'll break down the differences between Request Smuggling types and the specific discrepancies between **CL.0 vs. 0.CL**.
 
 ---------------------------------------------------------------------------------------------------
 ## What is Request Smuggling
@@ -33,7 +33,7 @@ For more details, refer to PortSwigger's [HTTP Request Smuggling](https://portsw
 ### Client-Side Request Smuggling
 Client-side request Smuggling, also known as desync attacks, focuses on discrepancies in browser-to-server communication. These attacks exploit misconfigured/misguided request handling between the browser and application server to enable same-origin bypasses, credential theft, or cross-user attacks.
 
-For an overview, James Kettle’s research on [browser-powered desync attacks](https://portswigger.net/research/browser-powered-desync-attacks) is an excellent resource.
+For an overview, James Kettle's research on [browser-powered desync attacks](https://portswigger.net/research/browser-powered-desync-attacks) is an excellent resource.
 
 ---------------------------------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ Connection: Keep-Alive
 
 ```
 
-4. Group the two requests into a single sequence in Burp Suite’s Repeater.
+4. Group the two requests into a single sequence in Burp Suite's Repeater.
 5. Configure the settings to send the group in sequence.
 6. Hit Send and review the response for the second request
 
