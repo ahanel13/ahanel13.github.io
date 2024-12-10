@@ -45,10 +45,10 @@ The vulnerability exists between backend servers (Application servers behind a p
 The victim/target could be other users on the platform or restricted applications behind a firewall.
 Delivery Methods: Carefully crafted HTTP requests with ambiguous `Content-Length` or `Transfer-Encoding` headers.
 
-### How to verify if it's valid issue
+### Testing Methodology
 todo: 
 
-### How to determine if issue false positive
+### How to Weed Out False Positives
 todo: 
 
 ## What is 0.CL Request Smuggling
@@ -58,10 +58,10 @@ todo:
 - Who are the targets for this attack 
 - What possible delivery methods.
 
-### How to verify if it's valid issue
+### Testing Methodology
 todo: 
 
-### How to determine if issue false positive
+### How to Weed Out False Positives
 todo: 
 
 ---------------------------------------------------------------------------------------------------
