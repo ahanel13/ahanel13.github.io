@@ -2,7 +2,7 @@
 title: I Encapsulated the Largest Single File Python Burp Extension
 date: 2024-11-27 7:00:00 -0700 # 10:00 AM
 author: anthony   
-categories: [Development, Burp Suite Extensions]
+categories: [Projects, Open-Source Contributions]
 tags: [dev work, open-source]    # TAG names should always be lowercase
 description: Refactoring a single-file Python project, like the Burp Upload Scanner, into a modular structure using the MVC pattern enhances collaboration and maintainability. This blog post details the process of splitting the code into manageable components and introduces an ongoing Java translation of the project. Contributions from developers are welcome to help complete the Java version.
 ---
