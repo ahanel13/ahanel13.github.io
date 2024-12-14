@@ -5,8 +5,12 @@ order: 5
 ---
 
 <div style="display: flex; justify-content: space-between;">
-  <a href="/assets/files/AnthonyHanel_Resume.pdf">Download Resume</a>
-  <i>Last Updated: {{ page.last_modified_at | date: '%b %d, %Y'}}</i>
+  <div id="download-block">
+    <a href="/assets/files/AnthonyHanel_Resume.pdf"><i class="fa fa-download"></i> Download Resume</a>
+  </div>
+  <div id="update-line">
+    <i>Last Updated: {{ page.last_modified_at | date: '%b %d, %Y'}}</i>
+  </div>
 </div>
 
 ## Offensive Application Security Analyst
@@ -47,4 +51,4 @@ _**Citibank** | July - August 2020_
   - The life cycle of a scrum project.
   - The workflow of developing an application at a financial institution.
 
-[Download Resume](/assets/files/AnthonyHanel_Resume.pdf)
+<a href="/assets/files/AnthonyHanel_Resume.pdf"><i class="fa fa-download"></i> Download Resume</a>
