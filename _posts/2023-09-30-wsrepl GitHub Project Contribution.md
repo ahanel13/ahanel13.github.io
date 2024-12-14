@@ -2,7 +2,7 @@
 title: wsrepl GitHub Project Contribution
 date: 2023-09-30 12:00:00 /-0600
 author: anthony   
-categories: [Projects, Burp Suite Extensions]
+categories: [Projects, Open-Source Contributions]
 tags: [contributions, dev work, open-source]     # TAG names should always be lowercase
 media_subpath: /assets/posts/wsrepl
 description: I contributed to a WebSocket Pentesting tool that was sponsored by Doyensec on GitHub.

@@ -231,6 +231,10 @@ jekyll-archives:
 
 plugins:
   - jekyll-last-modified-at
+  - jekyll-feed
+
+feed:
+  path: /feed.atom
 
 # Optional. The default date format, used if none is specified in the tag.
 last-modified-at:

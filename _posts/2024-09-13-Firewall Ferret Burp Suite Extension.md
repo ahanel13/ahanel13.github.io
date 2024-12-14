@@ -2,7 +2,7 @@
 title: I Created a Firewall Ferret
 date: 2024-09-13 11:00:00 -0600
 author: anthony   
-categories: [Projects, Burp Suite Extensions]
+categories: [Projects, My Burp Suite Extensions]
 tags: [dev work, burp suite, open-source]     # TAG names should always be lowercase
 description: With Firewall Ferret, security testers can now have greater control and precision when testing WAFs, manually adding junk data to requests and expanding Burp Suite’s active scan checks.
 media_subpath: /assets/posts/firewall-ferret
