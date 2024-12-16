@@ -49,7 +49,7 @@ The vulnerability is most common in `HTTP/1.1` due to its flexible interpretatio
 {: .prompt-tip}
 
 ### Client-Side Request Smuggling / Client-Side Desync
-Client-side request Smuggling, used in client-side desync (CSD) attacks, focuses on discrepancies in browser-to-server communication. These attacks exploit misconfigured/misguided request handling between the browser and application, enableing a new attack surface including CSRF-style attacks, same-origin bypasses, and interestingly *some* server-side request smuggling attacks.
+Client-side request Smuggling, used in client-side desync (CSD) attacks, focuses on discrepancies in browser-to-server communication. These attacks exploit misconfigured/misguided request handling between the browser and application, enabling a new attack surface including CSRF-style attacks, same-origin bypasses, and interestingly *some* server-side request smuggling attacks.
 
 For an overview, James Kettle's research on [browser-powered desync attacks](https://portswigger.net/research/browser-powered-desync-attacks) is an excellent resource.
 
@@ -66,21 +66,21 @@ The **victim/target** in this case would be other users on the platform or restr
 ### Testing Methodology
 CL.0, meaning **Content-Length.0**, is one of the easier Request Smuggling vulnerabilities to test for. In this scenario, the front-end server uses the `Content-Length`, but the back-end, for some reason, ignores it completely. As a result, the back-end treats the body as the start of a second request, ignoring the `Content-Length`. This is equivalent to the back-end treating the first request as having a `Content-Length` of 0. There are a couple of ways to test for this, but here's one:
 
-#### 1. Find an endpoint that supports `GET` and `POST` requests. 
-One way you can test for this is by selecting a `GET` request, sending it to Repeater, right-clicking the request, and selecting "Change request method". If you send the new request as a `POST` request and the application responds normally, then move on to the next step. This indicates that the application may not be processing the body.
+#### 1. Find an endpoint that supports `GET` and `POST` requests.
+One way to test for this is by selecting a `GET` request, sending it to Repeater, right-clicking the request, and selecting "Change request method." If you send the new request as a `POST` request and the application responds normally, then move on to the next step. This indicates that the application may not be processing the body.
 
 > Try to look for endpoints that might not be expecting a body, like files and images. I found this issue on an endpoint that indicated that there was a proxy. Something like `/proxychache/assets/main.js`.
 {: .prompt-tip}
 
-#### 2. Create a request in Burp Suite's Repeater 
+#### 2. Create a request in Burp Suite's Repeater
 This request should have these key attributes:
 
-| Attribute                             | Description                                                                                                                                                                           |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `POST` request                        | The request method used to test for the vulnerability.                                                                                                                                |
-| `Connection: keep-alive`              | The connection needs to remain open if we want to affect our own or others' requests.                                                                                                 |
-| `Content-Length: 24`                  | The `Content-Length` needs to be the actual, correct content length. The vulnerability occurs because it's not expecting a body.                                                      |
-| Smuggled request for a valid endpoint | The smuggled request needs to be for an endpoint we know exists. We do this so when we send a request that we know will be a `404` and it returns to `200`, the attack is successful. |
+| Attribute                             | Description                                                                                                                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `POST` request                        | The request method used to test for the vulnerability.                                                                                                                                     |
+| `Connection: keep-alive`              | The connection needs to remain open if we want to affect our own or others' requests.                                                                                                      |
+| `Content-Length: 24`                  | The `Content-Length` needs to be the actual, correct content length. The vulnerability occurs because it's not expecting a body.                                                           |
+| Smuggled request for a valid endpoint | The smuggled request needs to be for an endpoint we know exists. We do this so that when we send a request that we know will be a `404` and it returns to `200`, the attack is successful. |
 
 and should look something like this  <i class="fa fa-arrow-circle-down"></i>
 
@@ -105,7 +105,7 @@ Host: vulnerable-webiste.com
 
 #### 4. Configure Repeater to Send Requests in Group
 - Add both requests to a group in the order we created them.
-  ![Group requests option in Repeater](Create-Group-Repeater_Option.png) 
+  ![Group requests option in Repeater](Create-Group-Repeater_Option.png)
 
 - Configure repeater to send group in sequence (single connection).
   ![Sending Repeater group options](Send-Group-Repeater-Option.png)
@@ -113,7 +113,7 @@ Host: vulnerable-webiste.com
 #### 5. Send the request and observe the response.
 
 ### Key Considerations
-This testing methodology serves as a solid starting point for understanding the basic concepts of CL.0. However, there are additional methods to explore when testing in real-world scenarios. For instance, the request smuggling issue I identified did not yield results initially. I found that in order to observe the response to the smuggled request, I needed to send a large volume of requests in quick succession. I suspect that the vulnerability may exist on a server further downstream from the one I was targeting. Additionally, the activity of other users on the platform could have reduced the likelihood of detecting changes from my smuggled requests.
+This testing methodology serves as a solid starting point for understanding the basic concepts of CL.0. However, there are additional methods to explore when testing in real-world scenarios. For instance, the request smuggling issue I identified did not yield results initially. To observe the response to the smuggled request, I needed to send a large volume of requests in quick succession. I suspect the vulnerability may exist on a server further downstream from the one I was targeting. Additionally, the activity of other users on the platform could have reduced the likelihood of detecting changes from my smuggled requests.
 
 ## What is 0.CL Request Smuggling / Client-Side Desync
 0.CL, meaning **0.Content-Length**, is a client-side vulnerability stemming from discrepancies between the browser (client) and the application server's request handling. In this scenario, the front-end server ignores the `Content-Length`. This reduces the attack surface to the client sending the request.
@@ -121,12 +121,12 @@ This testing methodology serves as a solid starting point for understanding the 
 ### Testing Methodology
 Testing for 0.CL CSD requires a systematic approach to identify discrepancies in how the front-end server and the back-end server handle requests. We can test for this by sending a request with `Content-Length` being larger than what is actually within the body. If the application hangs, then the `Content-Length` is being processed and the app is waiting for the rest of the body. If the app responds immediately, then this is work investigating further. Here's what that would look like:
 
-#### 1. Ensure correct conditions met
+#### 1. Ensure correct conditions are met
  - `HTTP/2` is *not* support
  - HTTP Pipelining *is* supported
 
 #### 2. Create Request with larger Content-Length
-The request should probably have a body and the the `Content-Length` should be set to be larger than the body. Be sure update Burp Suite's Repeater settings to avoid automatic updating of the `Content-Length`.
+The request should probably have a body and the `Content-Length` should be set to be larger than the body. Be sure to update Burp Suite's Repeater settings to avoid automatic updating of the `Content-Length`.
 
 ```http
 POST /vulnerable-endpoint HTTP/1.1
@@ -139,10 +139,10 @@ Foo=bar
 ```
 
 #### 3. Send this request and observe
-When the request is sent, observer whether the application will hang and wait for the rest of the request or if it responds quickly. Is the application repsonse different if you change the type of payload/`Content-Type` or is it the same?
+When the request is sent, observe whether the application will hang and wait for the rest of the request or if it responds quickly. Is the application response different if you change the type of payload/`Content-Type` or is it the same?
 
 #### 4. Confirm Desync
-Once you've identified an endpoint that appears to be ignoring the body and meets the previous requirements, we can test one more thing. Does the application parse the body correct and just ignore it or is the server actually leaving the body to be processed later? We'll send two requests down the same connection using the method in the [CL.0 testing methodology](#testing-methodology).
+Once you've identified an endpoint that appears to be ignoring the body and meets the previous requirements, we can test one more thing. Does the application parse the body correctly and just ignore it or is the server actually leaving the body to be processed later? We'll send two requests down the same connection using the method in the [CL.0 testing methodology](#testing-methodology).
 
 > The `Content-Length` *must* be correct when confirming CSD.
 {: .prompt-danger}
@@ -150,7 +150,7 @@ Once you've identified an endpoint that appears to be ignoring the body and meet
 #### 5. Create Desync POC
 Once we've confirmed the a desync is occuring we attempt to recreate the issue on a vicitm by building the attack from the browser.
 
-1. Navigate to website with HTTPS that is not the website we've been targeting (vulnerable-webiste.com).
+1. Navigate to a website with HTTPS that is not the website we've been targeting (vulnerable-webiste.com).
 2. Open the browser dev tooks and configure the **Preserve Log** and **Connection ID** options in the **Network** tab.
 ![Browser Network Options](Browser-Network-Options.png)
 3. Switch to **Console** tab and use JavaScript `fetch()` to recreate the request from [step 4](#4-confirm-desync)
@@ -178,9 +178,9 @@ When *confirming* a CSD issue, ensure that your requests are ones that a browser
 ## So what happened to the issue?
 Now that we've got a good background of the issue being reviewed, this was the testing methodology, i.e., the steps to reproduce the issue under review.
 
-1. Add the following HTTP request to a Repeater tab in Burp Suite: 
+1. Add the following HTTP request to a Repeater tab in Burp Suite:
   *Not the incorrect `Content-Length`*
-  
+ 
 > *Identifying information has been removed*
 {: .prompt-warning}
 
@@ -212,7 +212,7 @@ Connection: Keep-Alive
 ### Methodology Analysis
 The testing methodology relied on manual manipulation of the `Content-Length` header, which is how 0.CL can *first* be identified, but if not updated to be correct during confirmation, can lead to false positives.
 
-Ultimately, the issue was invalid. The tester misinterpreted Burp Suite's behavior when manually setting the `Content-Length` header, mistakenly identifying a 0.CL vulnerability. They could not reproduce the behavior without keeping the `Content-Length` as the incorrect value, meaning this actually HTTP Pipelining. Since they were not able to replicate the attack with HTTP RFC compliant requests and the "vulnerability" was not exploitable. In other words, not an issue.
+Ultimately, the issue was invalid. The tester misinterpreted Burp Suite's behavior when manually setting the `Content-Length` header, mistakenly identifying a 0.CL vulnerability. They could not reproduce the behavior without keeping the `Content-Length` as the incorrect value, meaning this actually HTTP Pipelining. Since they couldn’t replicate the attack with HTTP RFC-compliant requests, and the "vulnerability" was not exploitable. In other words, not an issue.
 
 --------------------------------------------------------------------------------------------------------------
 ## Takeaways
