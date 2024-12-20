@@ -24,6 +24,14 @@ description: A guide to understanding and differentiating between CL.0 and 0.CL 
   .table-wrapper td:nth-child(2) {
     white-space: normal;
   }
+
+  h2 {
+    color: white;
+  }
+
+  h4 {
+    font-style: italic;
+  }
 </style>
 
 I recently reviewed a reported issue regarding 0.CL. While reviewing issues isn't part of my daily responsibilities, it's something I encounter occasionally. The process can be challenging—understanding the testing methods, validating their legitimacy, and determining whether the findings pose a real security risk requires both knowledge and precision.
@@ -151,7 +159,7 @@ Once you've identified an endpoint that appears to be ignoring the body and meet
 Once we've confirmed the a desync is occuring we attempt to recreate the issue on a vicitm by building the attack from the browser.
 
 1. Navigate to a website with HTTPS that is not the website we've been targeting (vulnerable-webiste.com).
-2. Open the browser dev tooks and configure the **Preserve Log** and **Connection ID** options in the **Network** tab.
+2. Open the browser dev tools and configure the **Preserve Log** and **Connection ID** options in the **Network** tab.
 ![Browser Network Options](Browser-Network-Options.png)
 3. Switch to **Console** tab and use JavaScript `fetch()` to recreate the request from [step 4](#4-confirm-desync)
 
@@ -212,7 +220,7 @@ Connection: Keep-Alive
 ### Methodology Analysis
 The testing methodology relied on manual manipulation of the `Content-Length` header, which is how 0.CL can *first* be identified, but if not updated to be correct during confirmation, can lead to false positives.
 
-Ultimately, the issue was invalid. The tester misinterpreted Burp Suite's behavior when manually setting the `Content-Length` header, mistakenly identifying a 0.CL vulnerability. They could not reproduce the behavior without keeping the `Content-Length` as the incorrect value, meaning this actually HTTP Pipelining. Since they couldn’t replicate the attack with HTTP RFC-compliant requests, and the "vulnerability" was not exploitable. In other words, not an issue.
+Ultimately, the issue was invalid. The tester misinterpreted Burp Suite's behavior when manually setting the `Content-Length` header, mistakenly identifying a 0.CL vulnerability. They could not reproduce the behavior without keeping the `Content-Length` as the incorrect value, meaning this is actually HTTP Pipelining. Since they couldn’t replicate the attack with HTTP RFC-compliant requests, and the "vulnerability" was not exploitable. In other words, not an issue.
 
 --------------------------------------------------------------------------------------------------------------
 ## Takeaways
