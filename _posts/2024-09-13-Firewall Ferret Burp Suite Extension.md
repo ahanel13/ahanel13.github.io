@@ -32,26 +32,35 @@ For more control, testers can also manually insert junk data at any point within
 ### 3. Enhanced Active Scans
 Firewall Ferret significantly enhances Burp Suite’s default active scans by duplicating each scan check and adding various payload sizes—ranging from 8 KB to 1024 KB—to the beginning of every payload. This increases the chance of evading WAF rules and discovering hidden vulnerabilities.
 
-## Why You May Not Find It in the BAPP Store
+## ~~Why You May Not Find It in the BAPP Store~~
 --------------------------------------------
 ![Burp Suite BAPP Store](Burp_Suite_BAPP_Store.png){: .w-50 .right}
 
-Although Firewall Ferret was designed to be a powerful tool for testers, it may not find its way into Portswigger’s BAPP store anytime soon. According to Portswigger's guidance, they do not plan to remove or replace any existing extensions in the BAPP store. Instead, they encourage developers to contribute to or improve existing projects rather than submit new ones.
+~~Although Firewall Ferret was designed to be a powerful tool for testers, it may not find its way into Portswigger’s BAPP store anytime soon.~~ According to Portswigger's guidance, they do not plan to remove or replace any existing extensions in the BAPP store. Instead, they encourage developers to contribute to or improve existing projects rather than submit new ones.
 
-### Update: Firewall Ferret Approved by Portswigger
+For those looking for a better WAF bypass tool, **Firewall Ferret** could be a viable replacement for **WAF Bypadd**~~, but users may need to download it manually from GitHub.~~
+
+### Update: Firewall Ferret Approved by Portswigger!!
 --------------------------------------------------
 
-Great news! Portswigger has approved Firewall Ferret, and it is now available in the BAPP store. You can find it here: [Firewall Ferret on BAPP Store](https://portswigger.net/bappstore/ca894f9bab6446f0aa7eac712a7b80ca) or within Burp Suite in the BApp store.
+Great news! Portswigger has approved Firewall Ferret, and it is now available in the BAPP store. You can find it here: [Firewall Ferret on WebBAPP Store](https://portswigger.net/bappstore/ca894f9bab6446f0aa7eac712a7b80ca) or within Burp Suite in the BApp store.
 
 ## How to Get Started
 ---------------------
 
-You can easily install Firewall Ferret by following these steps:
+### 1-Click Install
+Portswigger manages all of the approved BApp in their BApp stored located under the Extensions tab within Burp Suite.
 
-1. **Download the Latest Release**  
-  Head over to the project’s [GitHub page](https://github.com/ahanel13/Firewall-Ferret) to download the latest release.
-2. **Install in Burp Suite**  
-  Add the extension manually via Burp Suite’s Extensions tab, selecting **Firewall Ferret** as a Java extension.
+1. Navigate to `Extensions > BApp Store`
+2. Search for `Firewall Ferret`
+3. Click install
+
+### Manual Install
+~~While Firewall Ferret isn’t currently available in the BAPP store,~~ you can still easily install it manually by following these steps:
+
+1. **Download the Latest Release**: Head over to the project’s [GitHub page](https://github.com/ahanel13/Firewall-Ferret) to download the latest release.
+2. **Navigate to the Extenions tab**: Add the extension manually via Burp Suite’s `Extensions -> Installed` tab 
+3. **Add Extension**: Click the `Add` button, enter the file path to the Firewall Ferret JAR as a Java extension, and then click `Next`.
 
 ## A Word on WAFs
 -----------------
