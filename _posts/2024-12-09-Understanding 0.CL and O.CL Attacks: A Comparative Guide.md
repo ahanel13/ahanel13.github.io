@@ -74,6 +74,8 @@ The **victim/target** in this case would be other users on the platform or restr
 ### Testing Methodology
 CL.0, meaning **Content-Length.0**, is one of the easier Request Smuggling vulnerabilities to test for. In this scenario, the front-end server uses the `Content-Length`, but the back-end, for some reason, ignores it completely. As a result, the back-end treats the body as the start of a second request, ignoring the `Content-Length`. This is equivalent to the back-end treating the first request as having a `Content-Length` of 0. There are a couple of ways to test for this, but here's one:
 
+*Note: Burp Suite is the primary tool referenced in the methodogies. It may or may not be possible to repeat this methdology with other tools*
+
 #### 1. Find an endpoint that supports `GET` and `POST` requests.
 One way to test for this is by selecting a `GET` request, sending it to Repeater, right-clicking the request, and selecting "Change request method." If you send the new request as a `POST` request and the application responds normally, then move on to the next step. This indicates that the application may not be processing the body.
 
@@ -112,6 +114,7 @@ Host: vulnerable-webiste.com
 ```
 
 #### 4. Configure Repeater to Send Requests in Group
+todo: elborate on what a group *means*
 - Add both requests to a group in the order we created them.
   ![Group requests option in Repeater](Create-Group-Repeater_Option.png)
 
@@ -121,16 +124,17 @@ Host: vulnerable-webiste.com
 #### 5. Send the request and observe the response.
 
 ### Key Considerations
+todo: remove I's
 This testing methodology serves as a solid starting point for understanding the basic concepts of CL.0. However, there are additional methods to explore when testing in real-world scenarios. For instance, the request smuggling issue I identified did not yield results initially. To observe the response to the smuggled request, I needed to send a large volume of requests in quick succession. I suspect the vulnerability may exist on a server further downstream from the one I was targeting. Additionally, the activity of other users on the platform could have reduced the likelihood of detecting changes from my smuggled requests.
 
 ## What is 0.CL Request Smuggling / Client-Side Desync
 0.CL, meaning **0.Content-Length**, is a client-side vulnerability stemming from discrepancies between the browser (client) and the application server's request handling. In this scenario, the front-end server ignores the `Content-Length`. This reduces the attack surface to the client sending the request.
 
 ### Testing Methodology
-Testing for 0.CL CSD requires a systematic approach to identify discrepancies in how the front-end server and the back-end server handle requests. We can test for this by sending a request with `Content-Length` being larger than what is actually within the body. If the application hangs, then the `Content-Length` is being processed and the app is waiting for the rest of the body. If the app responds immediately, then this is work investigating further. Here's what that would look like:
+Testing for 0.CL CSD requires a systematic approach to identify discrepancies in how the front-end server and the back-end server handle requests. We can test for this by sending a request with `Content-Length` being larger than what is actually within the body. If the application hangs, then the `Content-Length` is being processed and the app is waiting for the rest of the body. If the app responds immediately, then this is worth investigating further. Here's what that would look like:
 
 #### 1. Ensure correct conditions are met
- - `HTTP/2` is *not* support
+ - `HTTP/2` is *not* supported
  - HTTP Pipelining *is* supported
 
 #### 2. Create Request with larger Content-Length
@@ -156,7 +160,7 @@ Once you've identified an endpoint that appears to be ignoring the body and meet
 {: .prompt-danger}
 
 #### 5. Create Desync POC
-Once we've confirmed the a desync is occuring we attempt to recreate the issue on a vicitm by building the attack from the browser.
+Once we've confirmed that a desync is occuring we attempt to recreate the issue on a vicitm by building the attack from the browser.
 
 1. Navigate to a website with HTTPS that is not the website we've been targeting (vulnerable-webiste.com).
 2. Open the browser dev tools and configure the **Preserve Log** and **Connection ID** options in the **Network** tab.
