@@ -45,20 +45,19 @@ Before I could say anything about the legitimacy of the issue, I had to do some 
 Request Smuggling is a vulnerability that exploits inconsistencies in how a server or servers handle HTTP requests. These attacks manipulate the communication between servers, and sometimes clients, potentially allowing attackers to hijack sessions, expose sensitive data, or execute unauthorized actions.
 
 ### Server-Side Request Smuggling
-Server-side request smuggling occurs when two backend systems, such as a proxy and an application server, parse the ends of HTTP requests differently. This discrepancy can be exploited by attackers to sneak a malicious request between the servers that interpret the request boundaries inconsistently. Attackers often target API gateways, load balancers, and reverse proxies by sending specially crafted HTTP requests with ambiguous `Content-Length` and `Transfer-Encoding` headers.  
+Server-side request smuggling occurs when two backend systems, such as a proxy and an application server, parse the ends of HTTP requests differently. This discrepancy can be exploited by attackers to sneak a malicious request between the servers that interpret the request boundaries inconsistently. Attackers often target API gateways, load balancers, and reverse proxies by sending specially crafted HTTP requests with ambiguous `Content-Length` and `Transfer-Encoding` headers. [^1][^2]
 
-The vulnerability is most common in `HTTP/1.1` due to its flexible interpretation of headers and chunked transfer encoding, which can lead to parsing discrepancies between upstream and downstream servers. In contrast, `HTTP/2.0` and `HTTP/3.0` use binary protocols with stricter framing and parsing rules, reducing the likelihood of such discrepancies. However, smuggling attacks can still occur in scenarios where protocols are [downgraded](https://portswigger.net/web-security/request-smuggling/advanced/http2-downgrading) to `HTTP/1.1` during transmission or where improper translation between protocols takes place.
+The vulnerability is most common in `HTTP/1.1` due to its flexible interpretation of headers and chunked transfer encoding, which can lead to parsing discrepancies between upstream and downstream servers. In contrast, `HTTP/2.0` and `HTTP/3.0` use binary protocols with stricter framing and parsing rules, reducing the likelihood of such discrepancies. However, smuggling attacks can still occur in scenarios where protocols are [downgraded](https://portswigger.net/web-security/request-smuggling/advanced/http2-downgrading) to `HTTP/1.1` during transmission or where improper translation between protocols takes place. [^3]
 
 > For more in-depth details on different types of request smuggling, see PortSwigger's [HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling) documentation.
 {: .prompt-tip}
 
 ### Client-Side Request Smuggling / Client-Side Desync
-Client-side request Smuggling, used in client-side desync (CSD) attacks, focuses on discrepancies in browser-to-server communication. These attacks exploit misconfigured/misguided request handling between the browser and application, enabling a new attack surface including CSRF-style attacks, same-origin bypasses, and interestingly *some* server-side request smuggling attacks.
+Client-side request Smuggling, used in client-side desync (CSD) attacks, focuses on discrepancies in browser-to-server communication. These attacks exploit misconfigured/misguided request handling between the browser and application, enabling a new attack surface including CSRF-style attacks, same-origin bypasses, and interestingly *some* server-side request smuggling attacks. [^4][^5]
 
 ---------------------------------------------------------------------------------------------------
-**Note:**
 
-While the [HTTP request smuggler](https://portswigger.net/bappstore/aaaa60ef945341e8a450217a54a11646) can be used to help identify possible issues, understanding and being able to create attacks with the vulnerability is very help when asked to justify risk or create a POC. For an overview, James Kettle's research on [browser-powered desync attacks](https://portswigger.net/research/browser-powered-desync-attacks) is an excellent resource.
+**Note:** While the [HTTP request smuggler](https://portswigger.net/bappstore/aaaa60ef945341e8a450217a54a11646) Burp Suite extensions can be used to help identify possible issues, understanding and being able to create attacks with the vulnerability is very help when asked to justify risk or create a POC.
 
 ---------------------------------------------------------------------------------------------------
 
@@ -245,12 +244,11 @@ While CL.0 and 0.CL shares some underlying principles, such as the way they are 
  
 Understanding these differences is crucial for accurate issue verification and mitigation.
 
-## More Resources
-This topic can be quite confusing as it can be hard to visualize how the requests are sent by the browser and accepted by several servers down a chain. I initially learned about HTTP Request Smuggling before I was even a professional pentester from Portswigger Web Security Academy. James Kettle really paved the way for this attack vector and I can't recommend a better resource for learning about the technique in general. This article was specifically about my confusion and in addition to what Kettle's Desync research was on.
+## Resources
+This topic can be quite confusing as it can be hard to visualize how the requests are sent by the browser and accepted by several servers down a chain. I initially learned about HTTP Request Smuggling before I was even a professional pentester from Portswigger Web Security Academy. James Kettle really paved the way for this attack vector and I can't recommend a better resource for learning about the technique in general. This article was specifically about my confusion and in addition to what Kettle's Desync research was on. I would highly recommend practicing on the vulnerable labs setup on the Web Security Academy.
 
-- [HTTP Desync Attacks: Request Smuggling Reborn](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn)
-- [Request Smugglins Web Security Academy](https://portswigger.net/web-security/request-smuggling)
-- [Browser-Powered Desync Attacks: A New Frontier in HTTP Request Smuggling](https://portswigger.net/research/browser-powered-desync-attacks)
-- [Client-side desync Web Security Academy](https://portswigger.net/web-security/request-smuggling/browser/client-side-desync)
-
-I would highly recommend practicing on the vulnerable labs setup on the Web Security Academy.
+[^1]: James Kettle's Research Request Smuggling [HTTP Desync Attacks: Request Smuggling Reborn](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn)
+[^2]: [Request Smuggling Web Security Academy](https://portswigger.net/web-security/request-smuggling)
+[^3]: James Kettle's Research on HTTP/2 Attacks [HTTP/2: The Sequel is Always Worse](https://portswigger.net/research/http2)
+[^4]: James Kettle's Research on CSD [Browser-Powered Desync Attacks: A New Frontier in HTTP Request Smuggling](https://portswigger.net/research/browser-powered-desync-attacks)
+[^5]: [Client-side desync Web Security Academy](https://portswigger.net/web-security/request-smuggling/browser/client-side-desync)
