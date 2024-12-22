@@ -4,6 +4,13 @@ icon: fas fa-terminal
 order: 5
 ---
 
+<style>
+  h3 {
+    font-size: 1.20rem;
+  }
+</style>
+
+
 <div style="display: flex; justify-content: space-between;">
   <div id="download-block">
     <a href="/assets/files/AnthonyHanel_Resume.pdf"><i class="fa fa-download"></i> Download Resume</a>
@@ -17,11 +24,27 @@ order: 5
 _**Citibank** | July 2022 - Present_
 
 -----------------------------------------
-- Discovered 10% of all High-Impact Priority vulnerabilities globally at Citi in 2023 and surpassed all other testers in the NAM region in both quantity and severity of the identified issues.
+
+### General
+These are tasks I perform regularly, regardless of position.
+
 - Performed white and grey box penetration tests with DAST tools including Burp Suite Pro, AppScan, ReadyAPI, SQLmap, and Kali Linux on web applications, APIs, databases, thick clients, and Android apps.
 - Conducted code reviews and vulnerability assessments on web applications, APIs, thick clients, and SaaS applications using tools such as Checkmarx, Qualys, Metasploit, and Nessus.
 - Performed infrastructure scanning to identify vulnerabilities and ensure robust security measures.
 - Created reports and collaborated with application teams to address reported issues and provide actionable remediation guidance.
+
+### Assistant Vice President - 2024
+
+- Identified most Priority risk issues in NAM AVA for 2024.
+- Helped identify and develop scan checks for [CVE-2024-36459](https://www.cve.org/CVERecord?id=CVE-2024-36459).
+- Established a process for triaging issues for Citi's invite-only Private Bug Bounty program and [Vulnerability Disclosure Program](https://bugcrowd.com/engagements/citi).
+- Continued to develop the internal Burp Suite extension for the team (`JAVA`).
+- Started to support development for internal reporting software (`C#/.NET`).
+- Completed volunteering for Static Code Analysis team.
+
+### Officer - 2022-2023
+
+- Discovered 10% of the total High-Impact Priority vulnerabilities globally at Citi in 2023 and surpassed all other testers in the NAM region in both quantity and severity of the identified issues.
 - Presented several vulnerabilities found during testing and held “tech talks” for NAM Application Vulnerability Assessment teams.
 - Developed several custom Burp Suite extensions using the new Montoya API to improve testing capabilities and efficiency, including integration with ChatGPT.
 

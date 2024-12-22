@@ -63,7 +63,7 @@ webmaster_verifications:
 # Web Analytics Settings
 analytics:
   google:
-    id: # fill in your Google Analytics ID
+    id: G-P1JPQ8KMY7 # fill in your Google Analytics ID
   goatcounter:
     id: # fill in your GoatCounter ID
   umami:
@@ -231,6 +231,10 @@ jekyll-archives:
 
 plugins:
   - jekyll-last-modified-at
+  - jekyll-feed
+
+feed:
+  path: /feed.atom
 
 # Optional. The default date format, used if none is specified in the tag.
 last-modified-at:

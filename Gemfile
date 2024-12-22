@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "jekyll-theme-chirpy", "~> 7.1"
+gem "jekyll-theme-chirpy", "~> 7.2.2"
 
 gem "html-proofer", "~> 5.0", group: :test
 
@@ -19,3 +19,4 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 gem "csv"
 gem "base64"
+gem 'jekyll-feed', '~> 0.17'
