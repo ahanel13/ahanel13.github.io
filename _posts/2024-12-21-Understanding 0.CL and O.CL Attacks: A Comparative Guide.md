@@ -1,6 +1,6 @@
 ---
 title: "Understanding CL.0 and 0.CL Attacks: A Comparative Guide"
-date: 2024-12-09 18:00:00 -0700 # 2024-11-29 19:00:00 -0700 # 7:00 PM
+date: 2024-12-21 17:30:00 -0700 # 2024-11-29 19:00:00 -0700 # 7:00 PM
 author: anthony
 categories: [Vulnerability Analysis, Request Smuggling]
 tags: [request smuggling, security testing, burp suite, how-to]    # TAG names should always be lowercase
@@ -25,10 +25,6 @@ description: A guide to understanding and differentiating between CL.0 and 0.CL 
     white-space: normal;
   }
 
-  h2 {
-    color: white;
-  }
-
   h4 {
     font-style: italic;
   }
@@ -38,7 +34,7 @@ I recently reviewed a reported issue regarding 0.CL. While reviewing issues isn'
 
 In this particular case, the researcher claimed to have found a **0.CL Request Smuggling** issue. However, inconsistencies in the report stood out immediately. Part of the confusion was my own: I initially approached the issue as if it was **CL.0 Request Smuggling**, a vulnerability I was very familiar with, having identified and presented on it in the past. However, after a conversation with the researcher, I realized my mistake and was only vaguely familiar with **0.CL Request Smuggling**.
 
-Before I could say anything about the legitimacy of the issue, I had to do some learning. After some research and conversations with others in the community, I acquired a better understanding of the issue. I realized there are not many resources on **0.CL** *specifically*. James Kettle's research [ Browser-Powered Desync Attacks: A New Frontier in HTTP Request Smuggling](https://portswigger.net/research/browser-powered-desync-attacks) is the only instance I was able to find where **CL.0** was mentioned and it was only indirectly mentioned, not *really* talked about.
+Before I could say anything about the legitimacy of the issue, I had to do some learning. After some research and conversations with others in the community, I acquired a better understanding of the issue. I realized there are not many resources on **0.CL** *specifically*. James Kettle's research [ Browser-Powered Desync Attacks: A New Frontier in HTTP Request Smuggling](https://portswigger.net/research/browser-powered-desync-attacks) is the only instance I was able to find where **0.CL** was mentioned and it was only indirectly mentioned, not *really* talked about.
 
 ![Image of table from James Kettle's research paper](0.CL-table-image.png)
 
@@ -59,22 +55,23 @@ The vulnerability is most common in `HTTP/1.1` due to its flexible interpretatio
 ### Client-Side Request Smuggling / Client-Side Desync
 Client-side request Smuggling, used in client-side desync (CSD) attacks, focuses on discrepancies in browser-to-server communication. These attacks exploit misconfigured/misguided request handling between the browser and application, enabling a new attack surface including CSRF-style attacks, same-origin bypasses, and interestingly *some* server-side request smuggling attacks.
 
-For an overview, James Kettle's research on [browser-powered desync attacks](https://portswigger.net/research/browser-powered-desync-attacks) is an excellent resource.
+---------------------------------------------------------------------------------------------------
+**Note:**
+
+While the [HTTP request smuggler](https://portswigger.net/bappstore/aaaa60ef945341e8a450217a54a11646) can be used to help identify possible issues, understanding and being able to create attacks with the vulnerability is very help when asked to justify risk or create a POC. For an overview, James Kettle's research on [browser-powered desync attacks](https://portswigger.net/research/browser-powered-desync-attacks) is an excellent resource.
 
 ---------------------------------------------------------------------------------------------------
 
 ## What is CL.0 Request Smuggling
-CL.0 is a server-side vulnerability caused by discrepancies between how two backend servers interpret an HTTP request. The vulnerability exists between backend servers (Application servers behind a proxy/load balancer). The server is simply not expecting a body or is not set up to handle a body. This results in the server leaving the body on the wire, waiting for the next request to be appended to it. There is not a lot of reason for this to happen.  I've identified this issue before and the source ended up being an SSL server incorrectly handling the `Connection: keep-alive` header.
-
-The **victim/target** in this case would be other users on the platform or restricted applications behind a firewall. This is because other requests can be manipulated or you can manipulate your own request if you're fast enough.
-
-> Request Smuggling is an indeterminate attack. You cannot guarantee that you will affect your own subsequent request or a specific user's request.
-{: .prompt-tip}
+CL.0, meaning **Content-Length.0**, is a [Server-Side Request Smuggling vulnerability](#server-side-request-smuggling). In this scenario, the front-end server uses the `Content-Length`, but the back-end, for some reason, ignores it completely. As a result, the back-end treats the body as the start of a second request, ignoring the `Content-Length`. This is equivalent to the back-end treating the first request as having a `Content-Length` of 0.  I've identified this issue in the past and the bug ended up being an SSL server incorrectly handling the `Connection: keep-alive` header.
 
 ### Testing Methodology
-CL.0, meaning **Content-Length.0**, is one of the easier Request Smuggling vulnerabilities to test for. In this scenario, the front-end server uses the `Content-Length`, but the back-end, for some reason, ignores it completely. As a result, the back-end treats the body as the start of a second request, ignoring the `Content-Length`. This is equivalent to the back-end treating the first request as having a `Content-Length` of 0. There are a couple of ways to test for this, but here's one:
+**CL.0**, is one of the easier [Server-Side Request Smuggling vulnerabilities](#server-side-request-smuggling) to test for. The **victim/target** with this attack is other users or restricted applications behind a firewall. This is because other requests can be manipulated or you can manipulate your own request if you're fast enough. There are a couple of ways to test for this, but here's one:
 
-*Note: Burp Suite is the primary tool referenced in the methodogies. It may or may not be possible to repeat this methdology with other tools*
+> Request Smuggling is an indeterminate attack. You cannot guarantee that you will affect your own subsequent request or a specific user's request.
+{: .prompt-warning}
+
+*Note: Burp Suite is the primary tool referenced in the methodologies. It may or may not be possible to repeat this methodology with other tools*
 
 #### 1. Find an endpoint that supports `GET` and `POST` requests.
 One way to test for this is by selecting a `GET` request, sending it to Repeater, right-clicking the request, and selecting "Change request method." If you send the new request as a `POST` request and the application responds normally, then move on to the next step. This indicates that the application may not be processing the body.
@@ -106,6 +103,7 @@ Foo: bar
 ```
 
 #### 3. Add a second request to Repeater which is known to return a `404` not found response.
+The request just needs to be different from the first request and a static response. 
 
 ```http
 GET /404.html HTTP/1.1
@@ -114,24 +112,34 @@ Host: vulnerable-webiste.com
 ```
 
 #### 4. Configure Repeater to Send Requests in Group
-todo: elborate on what a group *means*
-- Add both requests to a group in the order we created them.
-  ![Group requests option in Repeater](Create-Group-Repeater_Option.png)
+Burp Suite added the feature to create groups of HTTP requests with its Repeater tool. This allows pentesters to manually send HTTP requests using the same HTTP Pipeline. This feature made it easier to test for race conditions and client-side desync attacks. To use this functionality to test for CL.0 we'll add both requests to a group and send it in a single connection. 
 
-- Configure repeater to send group in sequence (single connection).
-  ![Sending Repeater group options](Send-Group-Repeater-Option.png)
+> HTTP pipelining allows multiple HTTP requests to be sent out sequentially without waiting for their corresponding responses, thus improving efficiency and reducing latency. While the `Connection: keep-alive` header enables persistent connections, it does not necessarily imply pipelining; the actual implementation of pipelining depends on the client and server support.
+{: .prompt-tip}
+
+<div style="display: flex; justify-content: space-between;">
+  <figure style="flex: 1; margin-right: 10px;">
+    <img src="Create-Group-Repeater_Option.png" alt="Group requests option in Repeater"/>
+    <figcaption>Adding both requests to a group in the order they were created in.</figcaption>
+  </figure>
+
+  <figure style="flex: 1; margin-left: 10px;">
+    <img src="Send-Group-Repeater-Option.png" alt="Sending Repeater group options"/>
+    <figcaption>Configuring repeater to send group in sequence (single connection).</figcaption>
+  </figure>
+</div>
 
 #### 5. Send the request and observe the response.
+If the response for the second request is not `404` or what was expected then there may be something interesting going on. To further test the potential request smuggling vulnerability. Duplicate the first request with the smuggled request. Send this rapidly by holding `ctrl` + `space` and observe if the response changes from the non-smuggled response to the smuggled response.
 
 ### Key Considerations
-todo: remove I's
-This testing methodology serves as a solid starting point for understanding the basic concepts of CL.0. However, there are additional methods to explore when testing in real-world scenarios. For instance, the request smuggling issue I identified did not yield results initially. To observe the response to the smuggled request, I needed to send a large volume of requests in quick succession. I suspect the vulnerability may exist on a server further downstream from the one I was targeting. Additionally, the activity of other users on the platform could have reduced the likelihood of detecting changes from my smuggled requests.
+This testing methodology serves as a solid starting point for understanding the basic concepts of CL.0. However, there are additional methods to explore when testing in real-world scenarios. For instance, the request smuggling issue I previously identified did not yield results initially. To observe the response to the smuggled request, a large volume of requests needed to be sent in quick succession. One takeaway from this is the vulnerability you're looking for may exist on a server further downstream from the one you're targeting. Additionally, the activity of other users on the platform could reduce the likelihood of detecting changes from smuggled requests.
 
 ## What is 0.CL Request Smuggling / Client-Side Desync
-0.CL, meaning **0.Content-Length**, is a client-side vulnerability stemming from discrepancies between the browser (client) and the application server's request handling. In this scenario, the front-end server ignores the `Content-Length`. This reduces the attack surface to the client sending the request.
+0.CL, meaning **0.Content-Length**, is a [client-side vulnerability](#client-side-request-smuggling--client-side-desync) stemming from discrepancies between the browser (client) and the application server's request handling. In this scenario, the front-end server ignores the `Content-Length`. This reduces the attack surface to the client sending the request.
 
 ### Testing Methodology
-Testing for 0.CL CSD requires a systematic approach to identify discrepancies in how the front-end server and the back-end server handle requests. We can test for this by sending a request with `Content-Length` being larger than what is actually within the body. If the application hangs, then the `Content-Length` is being processed and the app is waiting for the rest of the body. If the app responds immediately, then this is worth investigating further. Here's what that would look like:
+Testing for 0.CL CSD requires a systematic approach to identify discrepancies in how the front-end server and the back-end server handle requests. We can test for this by sending a request with `Content-Length` being larger than what is actually within the body. If the application hangs, then the `Content-Length` is being processed and the app is waiting for the rest of the body. If the app responds immediately, then this is worth investigating further. Here's how you would manually test for the issue:
 
 #### 1. Ensure correct conditions are met
  - `HTTP/2` is *not* supported
@@ -159,8 +167,10 @@ Once you've identified an endpoint that appears to be ignoring the body and meet
 > The `Content-Length` *must* be correct when confirming CSD.
 {: .prompt-danger}
 
+Just like in the [previous section](#3-send-this-request-and-observe) if the body of the first request affects the response of the second request, then you most likely have a deysnc vulnerability.
+
 #### 5. Create Desync POC
-Once we've confirmed that a desync is occuring we attempt to recreate the issue on a vicitm by building the attack from the browser.
+Once we've confirmed that a desync is occurring we attempt to recreate the issue on a victim by building the attack from the browser.
 
 1. Navigate to a website with HTTPS that is not the website we've been targeting (vulnerable-webiste.com).
 2. Open the browser dev tools and configure the **Preserve Log** and **Connection ID** options in the **Network** tab.
@@ -222,15 +232,25 @@ Connection: Keep-Alive
 6. Hit Send and review the response for the second request
 
 ### Methodology Analysis
-The testing methodology relied on manual manipulation of the `Content-Length` header, which is how 0.CL can *first* be identified, but if not updated to be correct during confirmation, can lead to false positives.
+The testing methodology relied on manual manipulation of the `Content-Length` header, which is how **0.CL** can *first* be identified, but if not updated to be correct during [confirmation](#4-confirm-desync), can lead to false positives.
 
-Ultimately, the issue was invalid. The tester misinterpreted Burp Suite's behavior when manually setting the `Content-Length` header, mistakenly identifying a 0.CL vulnerability. They could not reproduce the behavior without keeping the `Content-Length` as the incorrect value, meaning this is actually HTTP Pipelining. Since they couldn’t replicate the attack with HTTP RFC-compliant requests, and the "vulnerability" was not exploitable. In other words, not an issue.
+Ultimately, the issue was __invalid__. The tester misinterpreted Burp Suite's behavior when manually setting the `Content-Length` header, mistakenly identifying a 0.CL vulnerability. They could not reproduce the behavior without keeping the `Content-Length` as an incorrect value, meaning the affected second response was due to HTTP Pipelining. Since they couldn’t replicate the attack with HTTP RFC-compliant requests the "vulnerability" was not exploitable. In other words, not an issue.
 
 --------------------------------------------------------------------------------------------------------------
 ## Takeaways
-While CL.0 and 0.CL shares some underlying principles, such as the way they are confirmed. But their potential impacts are distinct:
+While CL.0 and 0.CL shares some underlying principles, such as the way they are confirmed, their potential impacts are distinct:
 
 - **CL.0**: Server-to-server discrepancies leading to backend exploitation.
 - **0.CL**: Browser-to-server discrepancies enabling client-side exploitation.
  
 Understanding these differences is crucial for accurate issue verification and mitigation.
+
+## More Resources
+This topic can be quite confusing as it can be hard to visualize how the requests are sent by the browser and accepted by several servers down a chain. I initially learned about HTTP Request Smuggling before I was even a professional pentester from Portswigger Web Security Academy. James Kettle really paved the way for this attack vector and I can't recommend a better resource for learning about the technique in general. This article was specifically about my confusion and in addition to what Kettle's Desync research was on.
+
+- [HTTP Desync Attacks: Request Smuggling Reborn](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn)
+- [Request Smugglins Web Security Academy](https://portswigger.net/web-security/request-smuggling)
+- [Browser-Powered Desync Attacks: A New Frontier in HTTP Request Smuggling](https://portswigger.net/research/browser-powered-desync-attacks)
+- [Client-side desync Web Security Academy](https://portswigger.net/web-security/request-smuggling/browser/client-side-desync)
+
+I would highly recommend practicing on the vulnerable labs setup on the Web Security Academy.
