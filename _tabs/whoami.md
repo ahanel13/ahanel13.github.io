@@ -2,7 +2,7 @@
 # the default layout is 'page'
 icon: fas fa-address-card
 order: 4
-media_subpath: /assets/img/about/
+media_subpath: /assets/img/whoami/
 ---
 
 <div style="display: flex; justify-content: space-between;">
