@@ -21,13 +21,13 @@ media_subpath: /assets/img/whoami/
 
 ----
 
-I embarked on my cybersecurity journey in March 2020 while pursuing a B.S. in Computer Science at the University of North Texas. The pandemic gave me a lot of free to time explore some of my interests. After graduating, I landed my first tech role as a Java Software Engineer at Citi, where I spent a year before transitioning to an internal penetration testing team. (I've come to realize this development role has help me in cybersecurity more than I would have realize. It's good to know how applications work through-in-through.)
+I began my cybersecurity journey in March 2020 while pursuing a B.S. in Computer Science at the University of North Texas. The pandemic gave me a lot of free time to explore my interests, including cybersecurity. After graduation, I landed my first tech role as a Java Software Engineer at Citi, where I spent a year before transitioning to an internal penetration testing team. (I've come to realize this development role has helped me in cybersecurity more than I initially thought. It's good to know how applications work through-and-through.)
 
-Over the next two years, I honed my skills as an Application Penetration Tester at Citibank. During this time, I achieved recognition as the top pentester in the North America region for both years, based on number of high severity issues I uncovered.
+Over the next two years, I honed my skills as an Application Penetration Tester at Citibank. During this time, I achieved recognition as the top pentester in the North America region for both years, based on a number of high severity issues I discovered.
 
-I also earned certifications like the Burp Suite Certified Practitioner and CompTIA Security+ while staying active on platforms like HackTheBox to continually refine my skills. (I'm studying for the CPTS and OSCP next be a little more well rounded of a tester.)
+I also earned certifications like the Burp Suite Certified Practitioner and CompTIA Security+ while staying active on platforms like HackTheBox to continually refine my skills. I’m currently studying for the CPTS and OSCP next, to be a little more well rounded as a tester.
 
-I've found somewhat of a passion in discovering hidden vulnerabilities and helping others become exceptional ethical hackers.
+I’ve found a passion in discovering hidden vulnerabilities and helping others become better ethical hackers.
 
 <div style="text-align: right;">
   <h1>About Me</h1>
@@ -37,8 +37,8 @@ I've found somewhat of a passion in discovering hidden vulnerabilities and helpi
 
 ![](IMG_2124.JPG){: width="350" height=400" .w-40 .right}
 
-Beyond my technical pursuits, an excellent coffee maker, a mediocure woodworker, fly fisherman and a general outdoorsman.
+Beyond my technical pursuits, I make an excellent cup of coffee and am a mediocre woodworker. I'm also a beginner fly fisherman and a general outdoorsman.
 
-I enjoy rock climbing, backpacking, camping, mountain biking, and exploring the beauty of national parks I have found my self near. When I’m not studying for my next certification, you can often find me tying my own flies or planning my next adventure!
+I enjoy rock climbing, backpacking, camping, mountain biking, and exploring the beauty of national parks I have found myself near. When I’m not studying for my next certification, you can find me tying flies or planning my next adventure!
 
-I relocated from Texas to Utah in 2023 to embrace the abundant outdoor opportunities. I work remote and live with my fiancée and our two beloved cats, April and Tripp.
+I relocated from Texas to Utah in 2023 to embrace the abundant outdoor opportunities. I work from home with my beautiful wife and our beloved cat, April.
