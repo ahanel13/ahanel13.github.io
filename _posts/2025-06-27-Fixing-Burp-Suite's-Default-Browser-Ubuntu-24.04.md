@@ -50,9 +50,9 @@ sudo apparmor_parser -r /etc/apparmor.d/burpbrowser
 > The key part of this solution is the `userns,` line within the profile. This explicitly grants the Burp browser the `userns` (user namespace) permission, allowing it to function correctly.
 {: .prompt-tip}
 
-# Please Avoid the Common SUID "Fix"
+# Avoid the Common SUID "Fix"
 
-A common "solution" found on forums like [Reddit](https://www.reddit.com/r/bugbounty/comments/1db1lh5/the_default_browser_in_burp_suite_isnt_launching/) involves using `chown` and `chmod` to modify the `chrome-sandbox` binary. This approach, while seemingly simple, is *extremely* dangerous and should be avoided at all costs. This "fix" typically looks like this:
+A common solution found on forums like [Reddit](https://www.reddit.com/r/bugbounty/comments/1db1lh5/the_default_browser_in_burp_suite_isnt_launching/) involves using `chown` and `chmod` to modify the `chrome-sandbox` binary. This approach, while seemingly simple, could be dangerous and should probably be avoided. This fix typically looks like this:
 
 1.  **Find the `chrome-sandbox` binary:**
 
@@ -69,13 +69,18 @@ A common "solution" found on forums like [Reddit](https://www.reddit.com/r/bugbo
 > The critical part is the `chmod 4755`. The `4` sets the SUID (Set User ID) bit. When the SUID bit is set, *any* user running the `chrome-sandbox` binary will execute it with *root* privileges.
 {: .prompt-danger}
 
-**Why is this so bad?**
+**Why is this so bad?** While the sandbox process is designed to drop its elevated privileges after creating the sandbox, running it with SUID as root is not the primary recommendations as it introduces some unnecessary security risks:
 
-  * **Massive Security Risk:** You're giving the browser's sandbox component the ability to run as *root*, the all-powerful user. If a malicious website or attacker finds *any* vulnerability in the browser, they could potentially escape the sandbox and gain complete control of your system.
-  * **Breaks the Sandbox:** The entire point of a sandbox is isolation. This "fix" completely defeats that purpose. It's like giving the keys to your entire house to a guest you barely know.
+  * **Massive Security Risk:** You're giving the browser's sandbox component the ability to run as *root*, the all-powerful user. If a malicious website or attacker finds *any* vulnerability in the browser or if the sandbox wasn't created correctly such as failing to drop privileges, they could potentially escape the sandbox and gain complete control of your system. The would be no need to privilege escalation exploits, as the browser is already running with root privileges.
+  * **Ignores Ubunut Security:** Whether you agree or not, Ubuntu has decided to move in the direction of unprivileged user namespaces. They want to enhance security by preventing processes from running with unnecessary privileges. While the chrome-sandbox binary is designed to run with elevated privileges which it drops after creating the sandbox, forcing it to run as root defeats the purpose of this security model.
   * **Unnecessary Privilege Escalation:** The browser doesn't *need* root privileges to create a sandbox. The AppArmor solution demonstrates that.
 
 # Safety First - Principle of Least Privilege
 The Principle of Least Privilege (PoLP) is a fundamental security principle that states that users and programs should operate using the least amount of privilege necessary to perform their tasks. By applying this principle, you minimize the potential damage that can occur if a program is compromised.
 
-While the SUID "fix" might seem like a quick and easy way to get Burp's browser working, it introduces an unnecessary privilege escalation path. The AppArmor solution is slightly more involved, but it's Ubuntu's *recommended* way to fix the problem without compromising your system's security. Always prioritize security best practices and avoid solutions that involve granting unnecessary and excessive privileges.
+While the SUID "fix" a _is_ quick and easy way to get Burp's browser working, it introduces an unnecessary privilege escalation path. The AppArmor solution is slightly more involved, but it's Ubuntu's _and_ Portswigger's *recommended* way to fix the problem without compromising your system's security. Always prioritize security best practices and avoid solutions that involve granting unnecessary and excessive privileges.
+
+
+> The apparmour method can be set and forget as well. The SUID method requires you to remember to change the permissions every time you update Burp Suite, which can be a hassle. The AppArmor profile will remain in place until you decide to remove it, making it a more convenient and secure solution.
+{: .prompt-tip}
+
