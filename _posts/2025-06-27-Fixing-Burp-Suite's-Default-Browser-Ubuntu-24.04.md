@@ -21,9 +21,9 @@ Ubuntu 24.04, in its quest for enhanced security, has tightened restrictions on 
 
 The recommended and *safe* solution involves creating a custom AppArm   or profile for Burp's browser. This profile explicitly grants the browser the necessary permissions to create its sandbox without compromising system security. Here's the profile you need:
 
-> Make sure to replace `@{HOME}/BurpSuitePro/burpbrowser/*/chrome` with the actual path to your Burp browser's  if necessary. This is typically found in the Burp Suite installation directory. You can use the `find` command to locate it:
+> Best practice would be to replace `@{HOME}/BurpSuitePro/burpbrowser/*/chrome` with the actual path to your Burp browser's. This is typically found in the Burp Suite installation directory. You can use the `find` command to locate it:
 > ```bash
-> find ~ -type f -name "chrome-sandbox"
+> find ~ -type f -name "chrome"
 > ```
 {: .prompt-warning}
 
