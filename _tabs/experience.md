@@ -21,7 +21,7 @@ order: 5
 </div>
 
 ## Senior Web Application Penetration Tester
-_**[Virtue Security](https://www.virtuesecurity.com/)** | June 205 - Present_
+_**[Virtue Security](https://www.virtuesecurity.com/)** | June 2025 - Present_
 
 -----------------------------------------
 
@@ -42,9 +42,9 @@ These are tasks I performed regularly, regardless of position at Citibank.
 - Created reports and collaborated with application teams to address reported issues and provide actionable remediation guidance.
 
 ### Vice President - 2025
-- Led VA's pentesting anlysis of different API DAST solution providers in an effort to empower developers to shift left and improve the security of their applications.
+- Led VA's pentesting analysis of different API DAST solution providers in an effort to empower developers to shift left and improve the security of their applications.
 - Automated the triage tracking process for the Private Bug Bounty program and Vulnerability Disclosure Program using Python, significantly reducing manual effort and improving efficiency.
-- Succesfully managed the [Skybox platform after it imploded](https://www.linkedin.com/pulse/skybox-goneheres-what-enterprises-should-do-next-tag-infosphere-rribc/) until we could transition to ServiceNow for systemic vulnerability management on internally tracked softwares and systems.
+- Successfully managed the [Skybox platform after it imploded](https://www.linkedin.com/pulse/skybox-goneheres-what-enterprises-should-do-next-tag-infosphere-rribc/) until we could transition to ServiceNow for systemic vulnerability management on internally tracked softwares and systems.
 - Onboarded Citi to [HackerOne](https://hackerone.com/citi) for an additional Private Bug Bounty program, enhancing the security testing capabilities and expanding the scope of vulnerability discovery.
 
 ### Assistant Vice President - 2024
