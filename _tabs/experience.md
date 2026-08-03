@@ -21,16 +21,17 @@ order: 5
 </div>
 
 ## Senior Web Application Penetration Tester
-_**[Virtue Security](https://www.virtuesecurity.com/)** | June 2025 - Present_
+_**[Virtue Security](https://www.virtuesecurity.com/){:target="_blank" rel="noopener noreferrer"}** | June 2025 - Present_
 
------------------------------------------
-
-tbd... :)
+- Conduct end-to-end penetration tests across web applications, mobile apps, cloud environments (AWS/Azure/GCP), network infrastructure, thick client applications, and Model Context Protocol (MCP) servers.
+- Build and maintain internal security tools and open-source/public tools to automate assessment workflows and expand attack surface coverage.
+- Architect AI-driven integrations and workflow automations to enhance assessment depth, accelerate vulnerability discovery, and streamline testing efficiency.
+- Author comprehensive technical assessment reports and deliver debriefs with actionable remediation guidance for client engineering and leadership teams.
 
 
 
 ## Offensive Application Security Analyst
-_**Citibank** | Total Tenure of 4+ years (July 2021 - June 2025)_
+_**[Citibank](https://www.citigroup.com/){:target="_blank" rel="noopener noreferrer"}** | Total Tenure of 4+ years (July 2021 - June 2025)_
 
 -----------------------------------------
 
@@ -63,7 +64,7 @@ These are tasks I performed regularly, regardless of position at Citibank.
 - Developed several custom Burp Suite extensions using the new Montoya API to improve testing capabilities and efficiency, including integration with ChatGPT.
 
 ## GFT Java Software Engineer
-_**Citibank** | July 2021 - July 2022_
+_**[Citibank](https://www.citigroup.com/){:target="_blank" rel="noopener noreferrer"}** | July 2021 - July 2022_
 
 -----------------------------------------
 - Led a successful migration from Solr to Elasticsearch for an internal search engine, leveraging Java and Angular technologies.
@@ -71,7 +72,7 @@ _**Citibank** | July 2021 - July 2022_
 - Provided security consultancy, leveraging expertise to guide the team's developers in implementing effective cybersecurity best practices.
 
 ## Undergraduate Research Assistant
-_**The University of North Texas** | Jan - May 2021_
+_**[The University of North Texas](https://www.unt.edu/){:target="_blank" rel="noopener noreferrer"}** | Jan - May 2021_
 
 -----------------------------------------
 - Developed a C++ program that:
@@ -79,7 +80,7 @@ _**The University of North Texas** | Jan - May 2021_
   - Used matrix multiplication to find the centrality of a given matrix to help identify super-spreaders of infectious diseases.
 
 ## EIO&T Summer Analyst
-_**Citibank** | July - August 2020_
+_**[Citibank](https://www.citigroup.com/){:target="_blank" rel="noopener noreferrer"}** | July - August 2020_
 
 -----------------------------------------
 - Gained a high level of understanding of the positions within Citi’s EO&T 2-year rotational program.
