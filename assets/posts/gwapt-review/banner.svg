@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="gwaptBannerTitle">
+  <title id="gwaptBannerTitle">GWAPT certification review banner</title>
+
+  <defs>
+    <clipPath id="frame">
+      <rect x="0" y="0" width="1200" height="630" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- warm paper background -->
+    <rect x="0" y="0" width="1200" height="630" fill="#f6f1e7" />
+
+    <!-- topo contour lines -->
+    <g fill="none" stroke="#4c6b4f" stroke-width="1.5">
+      <path d="M -40 520 C 160 460, 320 580, 520 500 C 720 420, 860 560, 1080 480 C 1180 445, 1220 470, 1260 450"
+            opacity="0.16" />
+      <path d="M -40 560 C 180 500, 340 610, 560 540 C 760 470, 900 590, 1100 520 C 1180 495, 1220 510, 1260 495"
+            opacity="0.22" />
+      <path d="M -40 600 C 200 545, 380 640, 620 580 C 800 535, 940 620, 1140 560 C 1200 545, 1230 555, 1260 545"
+            opacity="0.30" />
+      <path d="M -20 90 C 140 40, 260 130, 420 80 C 560 35, 660 110, 820 65"
+            opacity="0.14" />
+      <path d="M -20 130 C 160 75, 300 165, 460 120 C 600 80, 700 150, 860 110"
+            opacity="0.10" />
+    </g>
+
+    <!-- border frame, field-notes style -->
+    <rect x="28" y="28" width="1144" height="574" fill="none" stroke="#ded4c2" stroke-width="2" />
+    <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#c7bba0" stroke-width="1" stroke-dasharray="2 6" />
+
+    <!-- badge / certificate motif -->
+    <g transform="translate(915,315)">
+      <circle r="150" fill="none" stroke="#ded4c2" stroke-width="1" stroke-dasharray="3 7" />
+
+      <!-- ribbon tails -->
+      <path d="M -34 108 L -70 205 L -34 190 L -6 220 Z" fill="#a8451a" opacity="0.9" />
+      <path d="M 34 108 L 70 205 L 34 190 L 6 220 Z" fill="#a8451a" opacity="0.9" />
+
+      <!-- medallion -->
+      <circle r="112" fill="#fffaf0" stroke="#c1591c" stroke-width="6" />
+      <circle r="90" fill="none" stroke="#c1591c" stroke-width="2" stroke-dasharray="4 6" />
+
+      <!-- checkmark -->
+      <path d="M -42 4 L -12 36 L 48 -40" fill="none" stroke="#4c6b4f" stroke-width="12"
+            stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- text block -->
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#241f1a">
+      <text x="80" y="235" font-size="30" letter-spacing="6" fill="#6b6255">CERTIFICATION REVIEW</text>
+      <text x="78" y="330" font-size="118" font-weight="700">GWAPT</text>
+      <text x="80" y="390" font-size="28" fill="#6b6255" font-style="italic">was it actually worth it?</text>
+    </g>
+  </g>
+</svg>
