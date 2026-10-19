@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="smugglingBannerTitle">
+  <title id="smugglingBannerTitle">HTTP request smuggling banner showing a front-end and back-end disagreeing on a request boundary</title>
+
+  <defs>
+    <clipPath id="frame">
+      <rect x="0" y="0" width="1200" height="630" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- warm paper background -->
+    <rect x="0" y="0" width="1200" height="630" fill="#f6f1e7" />
+
+    <!-- topo contour lines -->
+    <g fill="none" stroke="#4c6b4f" stroke-width="1.5">
+      <path d="M -40 520 C 160 460, 320 580, 520 500 C 720 420, 860 560, 1080 480 C 1180 445, 1220 470, 1260 450"
+            opacity="0.16" />
+      <path d="M -40 560 C 180 500, 340 610, 560 540 C 760 470, 900 590, 1100 520 C 1180 495, 1220 510, 1260 495"
+            opacity="0.22" />
+      <path d="M -40 600 C 200 545, 380 640, 620 580 C 800 535, 940 620, 1140 560 C 1200 545, 1230 555, 1260 545"
+            opacity="0.30" />
+      <path d="M -20 90 C 140 40, 260 130, 420 80 C 560 35, 660 110, 820 65"
+            opacity="0.14" />
+      <path d="M -20 130 C 160 75, 300 165, 460 120 C 600 80, 700 150, 860 110"
+            opacity="0.10" />
+    </g>
+
+    <!-- dashed field-notes frame -->
+    <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#c7bba0" stroke-width="1" stroke-dasharray="2 6" />
+
+    <!-- desync motif: one byte stream, two disagreeing boundaries -->
+    <g transform="translate(672,232)">
+      <circle cx="232" cy="92" r="208" fill="none" stroke="#ded4c2" stroke-width="1" stroke-dasharray="3 7" />
+
+      <!-- the shared connection byte stream -->
+      <rect x="12" y="54" width="440" height="78" rx="8" fill="#fffaf0" stroke="#c7bba0" stroke-width="2" />
+
+      <!-- attacker bytes, as the back-end reads them -->
+      <rect x="14" y="56" width="151" height="74" fill="#4c6b4f" opacity="0.12" />
+      <!-- the remainder the back-end leaves buffered -->
+      <rect x="165" y="56" width="135" height="74" fill="#a8451a" opacity="0.88" />
+      <!-- victim bytes -->
+      <rect x="300" y="56" width="150" height="74" fill="#4c6b4f" opacity="0.20" />
+
+      <!-- front-end boundary -->
+      <line x1="300" y1="20" x2="300" y2="150" stroke="#4c6b4f" stroke-width="3" stroke-dasharray="6 5" />
+      <!-- back-end boundary -->
+      <line x1="165" y1="36" x2="165" y2="168" stroke="#a8451a" stroke-width="3" stroke-dasharray="6 5" />
+
+      <!-- brackets -->
+      <path d="M 14 40 L 14 26 L 300 26 L 300 40" fill="none" stroke="#4c6b4f" stroke-width="2" opacity="0.75" />
+      <path d="M 14 146 L 14 160 L 165 160 L 165 146" fill="none" stroke="#a8451a" stroke-width="2" opacity="0.75" />
+
+      <g font-family="Georgia, 'Times New Roman', serif">
+        <text x="20" y="16" font-size="21" letter-spacing="3" fill="#4c6b4f">FRONT-END ENDS HERE</text>
+        <text x="20" y="184" font-size="21" letter-spacing="3" fill="#a8451a">BACK-END ENDS HERE</text>
+        <text x="232" y="100" font-size="18" letter-spacing="2" fill="#fffaf0" text-anchor="middle">SMUGGLED</text>
+        <text x="375" y="100" font-size="18" letter-spacing="2" fill="#2f4a33" text-anchor="middle">VICTIM</text>
+        <text x="89" y="100" font-size="18" letter-spacing="2" fill="#2f4a33" text-anchor="middle">ATTACKER</text>
+      </g>
+    </g>
+
+    <!-- text block -->
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#241f1a">
+      <text x="78" y="320" font-size="88" font-weight="700">REQUEST</text>
+      <text x="78" y="408" font-size="88" font-weight="700">SMUGGLING</text>
+    </g>
+  </g>
+</svg>
