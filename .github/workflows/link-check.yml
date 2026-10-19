@@ -1,0 +1,48 @@
+name: "Check External Links"
+on:
+  schedule:
+    # Weekly, Monday 12:00 UTC. Kept off push/PR so rot in outbound
+    # links never blocks a deploy — this job only reports.
+    - cron: "0 12 * * 1"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll b -d "_site"
+        env:
+          JEKYLL_ENV: "production"
+
+      # Unlike the build workflows, external links ARE checked here.
+      # fonts.googleapis.com / fonts.gstatic.com are bare `preconnect`
+      # origins that 404 by design. External hashes are skipped because
+      # `#:~:text=` fragments can't be resolved server-side. 403/429/999
+      # are what LinkedIn, X and Reddit hand back to CI runners.
+      - name: Check links
+        run: |
+          bundle exec htmlproofer _site \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/,/^https:\/\/fonts\.googleapis\.com\/?$/,/^https:\/\/fonts\.gstatic\.com\/?$/" \
+            --no-check-external-hash \
+            --ignore-status-codes "403,429,999" \
+            --typhoeus '{"timeout":30,"connecttimeout":15,"followlocation":true}' \
+            --hydra '{"max_concurrency":10}'
