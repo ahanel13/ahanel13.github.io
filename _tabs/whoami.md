@@ -15,7 +15,7 @@ media_subpath: /assets/img/whoami/
   </div>
 </div>
 
-![Headshot of Anthony](headshot.jpg){: .w-40 .center}
+![Headshot of Anthony](headshot.jpg){: .w-60 .center}
 
 # My Journey in Cybersecurity
 
